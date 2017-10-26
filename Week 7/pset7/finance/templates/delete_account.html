@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete Account
+{% endblock %}
+
+{% block main %}
+    <div class="alert alert-warning alert-dismissable">
+        <a aria-label="close" class="close" data-dismiss="alert" href=
+        "#">&times;</a> <strong>Warning!</strong> This will permanently delete
+        your Kubera account. This action cannot be undone!
+    </div>
+    <h2>Account Settings</h2>
+    <h4>Delete Your Account</h4>
+    <form action="{{ url_for('delete_account') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <input autocomplete="off" autofocus="" class="form-control"
+                name="password" placeholder="Password" type="password">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-danger" type="submit">
+                    Delete Account
+                </button>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

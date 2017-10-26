@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Deposit
+{% endblock %}
+
+{% block main %}
+    <h2>Get More Cash<br>
+    <small>Quick and easy!</small></h2>
+    <form action="{{ url_for('deposit') }}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <button class="btn btn-default" type="submit">
+                    Deposit $1.000 into my account
+                </button>
+            </div>
+        </fieldset>
+    </form>
+        <button class="btn btn-info btn-sm" data-target="#myModal"
+        data-toggle="modal" type="button">
+            Regarding Deposit Limit
+        </button>
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal" type="button">
+                        &times;
+                    </button>
+                    <h4 class="modal-title">
+                        Why am I unable to deposit cash into my account?
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <p>Trading stocks should be <strong>fun</strong> and
+                    <strong>exciting</strong>.</p>
+                    <p>
+                        What's left of both those things if you can just
+                        infinitely add cash to your account?
+                    </p>
+                    <p>Go out and <strong>EARN</strong> those dollars!</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal" type=
+                    "button">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

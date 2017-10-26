@@ -1,0 +1,76 @@
+.container {
+    /* center contents */
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    padding-bottom: 3em;
+}
+
+
+/* color scheme for solarized theme */
+
+.blue {
+    color: #268bd2;
+}
+
+.red {
+    color: #dc322f;
+}
+
+.white {
+    color: #ddd;
+}
+
+.green {
+    color: #859900;
+}
+
+main .form-control {
+    /* center form controls */
+    display: inline-block;
+    /* override Bootstrap's 100% width for form controls */
+    width: 12em;
+}
+
+main img {
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+main table {
+    width: 100%;
+}
+
+main thead {
+    border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+main th, td {
+    text-align: left;
+    color: #ddd;
+    padding: 1em;
+}
+
+main tfoot td {
+    font-weight: bold;
+    border-style: none;
+}
+
+body {
+    color: #ddd;
+}
+
+main h2 {
+    margin: 1em;
+}
+
+footer {
+    background-color: #073642;
+    text-align: center;
+    padding: 0.5em;
+
+}
+
+footer span {
+    color: rgba(255, 255, 255, 0.5)
+}

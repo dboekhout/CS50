@@ -1,0 +1,30 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1561
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww27360\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 TRANSACTIONS: \
+CREATE TABLE IF NOT EXISTS 'transactions' ('transaction_id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'user_id' INTEGER NOT NULL, 'stock' TEXT NOT NULL, 'symbol' TEXT NOT NULL, 'amount' INTEGER NOT NULL, 'price' REAL NOT NULL, date DATETIME NOT NULL, 'sold' BOOLEAN NOT NULL DEFAULT 0 CHECK (sold IN (0,1)));\
+\
+PORTFOLIO:\
+CREATE TABLE IF NOT EXISTS 'portfolio' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'user_id' INTEGER NOT NULL, 'stock' TEXT NOT NULL, 'symbol' TEXT NOT NULL, 'amount' INTEGER NOT NULL);\
+CREATE UNIQUE INDEX 'amount' ON 'portfolio' (user_id, stock, symbol);\
+\
+INSERT OR REPLACE INTO portfolio (user_id, stock, symbol, amount)\
+VALUES (10, 'Apple Inc.', 'AAPL', COALESCE((select amount from portfolio where user_id = 10 and symbol = 'AAPL'), 0) + 6);\
+\
+\
+\
+CREATE TABLE 'portfolio' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'user_id' INTEGER NOT NULL, 'stock' TEXT NOT NULL, 'symbol' TEXT NOT NULL, 'amount' INTEGER NOT NULL)\
+\
+CREATE UNIQUE INDEX 'amount' ON 'portfolio' (user_id, stock, symbol)\
+\
+CREATE TABLE 'transactions' ('transaction_id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'user_id' INTEGER NOT NULL, 'stock' TEXT NOT NULL, 'symbol' TEXT NOT NULL, 'amount' INTEGER NOT NULL, 'price' REAL NOT NULL, date DATETIME NOT NULL, 'action' TEXT NOT NULL DEFAULT 'BUY' CHECK (action IN ('BUY','SELL')))\
+\
+CREATE TABLE 'users' ('id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, 'username' TEXT NOT NULL, 'hash' TEXT NOT NULL, 'cash' NUMERIC NOT NULL DEFAULT 10000.00)\
+\
+\
+SELECT portfolio.stock, transactions.symbol, transactions.amount, transactions.price, transactions.date, transactions.action from transactions INNER JOIN portfolio ON portfolio.symbol = transactions.symbol WHERE transactions.user_id = :user_id GROUP BY transactions.transaction_id ORDER BY datetime(date) DESC;\
+}

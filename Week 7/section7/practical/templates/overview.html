@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Overview
+{% endblock %}
+
+{% block main %}
+    <body text><h1>Registered Groups</h1></body>
+    <table class="table">
+        <tr>
+            <th>Group Name</th>
+            <th>Student [1]</th>
+            <th>Student [2]</th>
+            <th>Student [3]</th>
+            <th>Student [4]</th>
+            <th>Practical date</th>
+        </tr>
+        
+        {% for row in rows %}
+        <tr>
+            <td>{{row["group_name"]}}</td>
+            <td>{{row["student_1"]}}</td>
+            <td>{{row["student_2"]}}</td>
+            <td>{{row["student_3"]}}</td>
+            <td>{{row["student_4"]}}</td>
+            <td>{{row["date"]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

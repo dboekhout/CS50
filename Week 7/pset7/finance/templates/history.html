@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% block title %}
+History
+{% endblock %}
+
+{% block main %}
+    <h2>Transaction History</h2>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <th>Stock</th>
+                <th>Symbol</th>
+                <th>No. of Shares</th>
+                <th>Buy/Sell price</th>
+                <th>Buy/Sell date</th>
+                <th>Order type</th>
+            </thead>
+            {% for item in transactions %}
+            <tr>
+                <td>{{ item.get("stock") }}</td>
+                <td>{{ item.get("symbol") }}</td>
+                <td>{{ item.get("amount") }}</td>
+                <td>{{ item.get("price")|usd }}</td>
+                <td>{{ item.get("date") }}</td>
+                {% if item.get("action") == 'BUY' %}
+                <td class="green">{{ item.get("action") }}</td>
+                {% else %}
+                <td class="red">{{ item.get("action") }}</td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

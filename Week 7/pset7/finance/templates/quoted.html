@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <h3>A share of {{ name }} ({{ symbol }}) is currently worth</h3>
+    <h2>{{ price | usd }}</h2>
+    <a href="buy">Aquire {{ symbol }} Shares</a>
+{% endblock %}

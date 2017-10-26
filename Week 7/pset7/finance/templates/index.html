@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Overview
+{% endblock %}
+
+{% block main %}
+    <h2>Your Portfolio</h2>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <th>Stock</th>
+                <th>Symbol</th>
+                <th>No. of Shares</th>
+                <th>Current Price</th>
+                <th>TOTAL</th>
+            </thead>
+            {% for item in stocks_owned %}
+            <tr>
+                <td>{{ item.get("stock") }}</td>
+                <td>{{ item.get("symbol") }}</td>
+                <td>{{ item.get("amount") }}</td>
+                <td>{{ stocks_prices[loop.index0] | usd }}</td>
+                <td>{{ total_stock_values[loop.index0] | usd }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="4">Fiat (USD)</td>
+                <td>{{ current_balance|usd }}</td>
+            </tr>
+            <tfoot>
+                <td colspan="4"></td>
+                <td>{{ net_worth|usd }}</td>
+            </tfoot>
+        </table>
+    </div>
+{% endblock %}

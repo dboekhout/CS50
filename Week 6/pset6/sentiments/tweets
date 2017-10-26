@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+# ----------------------------------------------------------
+# |     University of Amsterdam: Minor Programmeren        |
+# |     Problem Set 6: Sentiments (tweets)                 |
+# |     Created by Davy Boekhout on 10/10/2017             |
+# |                                                        |
+# |     Retrieves tweets from a given timeline on twitter  |
+# |     and determines if they are either positive or      |
+# |     negative.                                          |
+# ----------------------------------------------------------
+
+import sys
+import os
+
+from analyzer import Analyzer
+from helpers import get_user_timeline
+from termcolor import colored
+
+
+def main():
+    """Determine sentiment of a Twitter timeline"""
+    # ensure proper usage
+    if len(sys.argv) != 2:
+        sys.exit("Usage: ./tweets @twitter_handle")
+
+    # absolute paths to word lists
+    positives = os.path.join(sys.path[0], "positive-words.txt")
+    negatives = os.path.join(sys.path[0], "negative-words.txt")
+
+    # get timeline and initialize analyzer
+    max_twts = 50
+    timeline = get_user_timeline(sys.argv[1], max_twts)
+    analyzer = Analyzer(positives, negatives)
+
+    # get score for each tweet in timeline and print result
+    if timeline:
+        for tweet in timeline:
+            # retrieve score for tweet
+            score = analyzer.analyze(tweet)
+
+            # print out score and tweet in corresponding sentiment color
+            if score > 0.0:
+                print(colored("{} {}".format(score, tweet), "green"))
+            elif score < 0.0:
+                print(colored("{} {}".format(score, tweet), "red"))
+            else:
+                print(colored("{} {}".format(score, tweet), "yellow"))
+    else:
+        sys.exit("{} doesn't exist or has no tweets".format(sys.argv[1]))
+
+
+if __name__ == "__main__":
+    main()

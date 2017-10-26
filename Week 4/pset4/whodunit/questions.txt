@@ -1,0 +1,26 @@
+1.  A header file, in this case stdint, is included. This
+specific header file is used to increase the portability
+of code. stdint specifically provides typedefs and macros
+for fixed width integral types in accordance with the
+C99 standard.
+2. Using those particular types makes it so that everyone
+who uses them can expect them to be of the exact
+same fixed width. This creates portability if everyone
+agrees to use them.
+3.  BYTE: 8 bits, DWORD: 32 bits, LONG: 32 bits, WORD: 16 bits
+4.  0x42 0x4D in hexadecimal, same as BM in ASCII
+5.  bfSize is the bitmap file size in bytes. biSize is
+the size of the BITMAPINFOHEADER header file. The latter
+is a constant of 40 bytes.
+6.  It indicates a top-down device independent bitmap. These
+can't be compressed.
+7.  It's the biBitCount field.
+8.  In case the files specified do not exist or the
+user opening them does not have sufficient permissions.
+9.  Because only 1 element is read at a time, in this case
+an element like BITMAPFILEHEADER and BITMAPINFOHEADER
+10. 3 * 24 = 72. 72 % 4 = 0. 4-0 = 0. 4 % 4 = 0. The answer
+is 0.
+11. It's sets the position of a stream at a particular
+offset. This allows to skip over bytes.
+12. It's the current position of the file pointer
